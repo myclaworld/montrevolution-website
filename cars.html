@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Voitures — Mont Revolution RP</title>
+  <meta name="description" content="Catalogue complet des véhicules disponibles sur Mont Revolution RP — serveur FiveM QBCore francophone." />
+  <meta name="theme-color" content="#8E2CDD" />
+  <link rel="icon" href="https://r2.fivemanage.com/u4uBEo79Ww8Q5ijMSBpxm/logo.png" type="image/png" />
+  <meta property="og:title" content="Voitures — Mont Revolution RP" />
+  <meta property="og:description" content="Le catalogue complet des véhicules de Mont Revolution RP." />
+  <meta property="og:image" content="https://r2.fivemanage.com/u4uBEo79Ww8Q5ijMSBpxm/logo.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="fr_FR" />
+  <style>
+    :root {
+      --bg: #03050d;
+      --bg2: #060817;
+      --purple: #b718ff;
+      --violet: #6d21ff;
+      --blue: #18a8ff;
+      --baby: #78d9ff;
+      --pink: #ff34f3;
+      --ice: #dff7ff;
+      --dark-card: rgba(5, 8, 22, 0.72);
+      --glass: rgba(9, 15, 38, 0.62);
+      --stroke: rgba(143, 221, 255, 0.34);
+      --text: #f4fbff;
+      --muted: #9eb3d2;
+      --danger: #ff2b86;
+      --good: #39d6ff;
+      --shadow-purple: 0 0 28px rgba(183, 24, 255, .72);
+      --shadow-blue: 0 0 32px rgba(24, 168, 255, .7);
+      --radius: 28px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 12%, rgba(179, 17, 255, .34), transparent 28%),
+        radial-gradient(circle at 84% 18%, rgba(42, 176, 255, .34), transparent 30%),
+        radial-gradient(circle at 50% 110%, rgba(75, 20, 255, .32), transparent 42%),
+        linear-gradient(135deg, #02040a, #07051a 44%, #020713);
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    body::before {
+      background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: radial-gradient(circle at center, black, transparent 78%);
+    }
+
+    body::after {
+      z-index: -1;
+      opacity: .27;
+      background:
+        repeating-linear-gradient(0deg, transparent 0, transparent 3px, rgba(255,255,255,.05) 4px),
+        radial-gradient(circle at 50% 50%, transparent 0 40%, rgba(0,0,0,.78) 82%);
+      mix-blend-mode: screen;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; color: inherit; }
+
+    .page {
+      width: min(1440px, calc(100% - 34px));
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .neon-border {
+      position: relative;
+      border: 1px solid rgba(123, 210, 255, .28);
+      background: linear-gradient(135deg, rgba(255,255,255,.075), rgba(255,255,255,.025));
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.04), 0 0 46px rgba(53, 132, 255, .22);
+    }
+
+    .neon-border::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(255,52,243,.9), rgba(120,217,255,.95), rgba(183,24,255,.72));
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      opacity: .88;
+    }
+
+    /* ==================== TOPBAR (identical to main page) ==================== */
+    .topbar {
+      position: sticky;
+      top: 14px;
+      z-index: 20;
+      margin: 14px auto 0;
+      padding: 12px 14px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      backdrop-filter: blur(22px);
+      background: rgba(3, 5, 14, .68);
+      box-shadow: 0 22px 70px rgba(0,0,0,.42), 0 0 40px rgba(98, 30, 255, .18);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--purple), var(--blue));
+      box-shadow: var(--shadow-purple);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      letter-spacing: -2px;
+    }
+
+    .brand-copy strong {
+      display: block;
+      line-height: 1;
+      font-size: 14px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .brand-copy span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .nav {
+      display: flex;
+      gap: 7px;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .nav a {
+      padding: 10px 13px;
+      border-radius: 999px;
+      color: #d8ecff;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,.06);
+      background: rgba(255,255,255,.035);
+      transition: .2s ease;
+    }
+
+    .nav a:hover,
+    .nav a.active {
+      color: white;
+      transform: translateY(-2px);
+      border-color: rgba(120,217,255,.5);
+      box-shadow: var(--shadow-blue);
+    }
+
+    .nav a.active { background: rgba(120,217,255,.1); }
+
+    .cta-mini {
+      white-space: nowrap;
+      border: 0;
+      border-radius: 999px;
+      padding: 12px 18px;
+      cursor: pointer;
+      background: linear-gradient(135deg, var(--purple), var(--blue));
+      box-shadow: 0 0 24px rgba(96, 112, 255, .6), inset 0 1px 0 rgba(255,255,255,.38);
+      color: white;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      transform: perspective(900px) translateZ(0);
+      transition: .2s ease;
+    }
+
+    .cta-mini:hover { transform: perspective(900px) translateY(-2px) translateZ(16px); }
+
+    section { padding: 74px 0; }
+    section.catalogue-hero { padding: 54px 0 30px; }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(0,0,0,.32);
+      color: #cdf4ff;
+      border: 1px solid rgba(120,217,255,.28);
+      box-shadow: inset 0 0 25px rgba(120,217,255,.06), 0 0 30px rgba(183,24,255,.18);
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: 900;
+      margin-bottom: 22px;
+    }
+
+    .live-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #5effff;
+      box-shadow: 0 0 18px #5effff;
+    }
+
+    h1 {
+      font-size: clamp(46px, 7vw, 92px);
+      line-height: .88;
+      text-transform: uppercase;
+      letter-spacing: -.06em;
+      filter: drop-shadow(0 0 22px rgba(183,24,255,.38));
+    }
+
+    .catalogue-hero .tagline {
+      margin-top: 18px;
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 30px;
+      max-width: 790px;
+    }
+
+    .stat {
+      border-radius: 22px;
+      padding: 18px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.08);
+      backdrop-filter: blur(18px);
+      box-shadow: inset 0 0 25px rgba(255,255,255,.025);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: clamp(24px, 3vw, 38px);
+      line-height: 1;
+      background: linear-gradient(90deg, #ff44f6, #6bdcff);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+    }
+
+    .disclaimer {
+      color: #7488a4;
+      font-size: 12px;
+      line-height: 1.6;
+      max-width: 850px;
+      margin-top: 16px;
+    }
+
+    /* ==================== CATALOGUE CONTROLS ==================== */
+    .catalogue-controls {
+      border-radius: 30px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .search-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .search-row input[type="text"] {
+      flex: 1;
+      min-width: 220px;
+      padding: 14px 18px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.1);
+      background: rgba(0,0,0,.32);
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 600;
+      outline: none;
+      transition: .2s ease;
+    }
+
+    .search-row input[type="text"]::placeholder { color: var(--muted); }
+    .search-row input[type="text"]:focus {
+      border-color: rgba(120,217,255,.5);
+      box-shadow: var(--shadow-blue);
+    }
+
+    .sort-select {
+      padding: 14px 18px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.1);
+      background: rgba(0,0,0,.32);
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .category-pills {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      padding: 9px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.035);
+      color: #d8ecff;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: .18s ease;
+    }
+
+    .pill:hover { border-color: rgba(120,217,255,.4); transform: translateY(-2px); }
+
+    .pill.active {
+      background: linear-gradient(135deg, var(--purple), var(--blue));
+      border-color: transparent;
+      color: white;
+      box-shadow: 0 0 22px rgba(96,112,255,.55);
+    }
+
+    .results-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 26px 0 18px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .results-row strong { color: #fff; }
+
+    /* ==================== CAR GRID ==================== */
+    .car-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .car-card {
+      border-radius: 24px;
+      overflow: hidden;
+      background:
+        linear-gradient(160deg, rgba(255,255,255,.07), rgba(255,255,255,.02)),
+        rgba(4,7,18,.78);
+      border: 1px solid rgba(255,255,255,.09);
+      box-shadow: 0 18px 48px rgba(0,0,0,.34);
+      transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .car-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(120,217,255,.4);
+      box-shadow: 0 24px 60px rgba(0,0,0,.42), 0 0 30px rgba(120,217,255,.16);
+    }
+
+    .car-media {
+      position: relative;
+      aspect-ratio: 16/10;
+      background:
+        radial-gradient(circle at 30% 20%, rgba(183,24,255,.28), transparent 55%),
+        radial-gradient(circle at 75% 60%, rgba(24,168,255,.24), transparent 55%),
+        linear-gradient(150deg, rgba(19,12,47,.9), rgba(1,7,18,.94));
+      overflow: hidden;
+    }
+
+    .car-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .car-media.no-image {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .car-placeholder {
+      font-size: 46px;
+      opacity: .3;
+      filter: grayscale(1);
+    }
+
+    .car-category-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(3,5,14,.72);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(120,217,255,.3);
+      font-size: 10px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: #cdf4ff;
+    }
+
+    .car-badge-tag {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--purple), var(--blue));
+      font-size: 10px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: white;
+      box-shadow: 0 0 16px rgba(140,54,255,.5);
+    }
+
+    .car-body {
+      padding: 16px 16px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .car-body h3 {
+      font-size: 16px;
+      line-height: 1.25;
+      letter-spacing: -.01em;
+    }
+
+    .car-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+    }
+
+    .car-price {
+      font-weight: 900;
+      font-size: 15px;
+      background: linear-gradient(90deg, #ff44f6, #6bdcff);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .car-class {
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      font-weight: 700;
+    }
+
+    .empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--muted);
+      font-size: 15px;
+      border-radius: 24px;
+      border: 1px dashed rgba(255,255,255,.14);
+    }
+
+    /* ==================== FOOTER (identical to main page) ==================== */
+    .footer {
+      padding: 36px 0 50px;
+      color: #7f91ad;
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: 13px;
+    }
+
+    .glow-line {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--purple), var(--blue), transparent);
+      box-shadow: 0 0 20px rgba(120,217,255,.5);
+      margin: 14px 0;
+    }
+
+    @media (max-width: 1200px) {
+      .car-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 1050px) {
+      .stats { max-width: 100%; }
+      .car-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .topbar { border-radius: 26px; flex-wrap: wrap; justify-content: center; }
+    }
+
+    @media (max-width: 650px) {
+      .page { width: min(100% - 22px, 1440px); }
+      .nav { display: none; }
+      .stats { grid-template-columns: 1fr; }
+      .car-grid { grid-template-columns: 1fr; }
+      .search-row { flex-direction: column; }
+      .results-row { flex-direction: column; align-items: flex-start; gap: 6px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="topbar neon-border">
+      <a href="index_montrevolution_fivem.html#accueil" class="brand" aria-label="Mont Revolution RP — Accueil">
+        <div class="brand-mark">
+          <img src="https://r2.fivemanage.com/u4uBEo79Ww8Q5ijMSBpxm/logo.png" alt="Logo Mont Revolution RP" style="width:100%;height:100%;object-fit:contain;border-radius:14px;" />
+        </div>
+        <div class="brand-copy">
+          <strong>Mont Revolution RP</strong>
+          <span>FiveM • QBCore Roleplay</span>
+        </div>
+      </a>
+      <nav class="nav" aria-label="Navigation principale">
+        <a href="index_montrevolution_fivem.html#experience">Expérience</a>
+        <a href="index_montrevolution_fivem.html#tabs">Univers</a>
+        <a href="cars.html" class="active">Voitures</a>
+        <a href="index_montrevolution_fivem.html#features">Systèmes</a>
+        <a href="index_montrevolution_fivem.html#vote">Voter</a>
+        <a href="index_montrevolution_fivem.html#rejoindre">Rejoindre</a>
+      </nav>
+      <a class="cta-mini" href="index_montrevolution_fivem.html#rejoindre">Rejoindre</a>
+    </header>
+
+    <section class="catalogue-hero" id="accueil">
+      <div class="eyebrow"><span class="live-dot"></span> Concession Mont Revolution • Catalogue officiel</div>
+      <h1>Voitures</h1>
+      <p class="tagline">
+        Le garage complet de Mont Revolution RP : sportives, super-cars, SUV, berlines, classiques et motos.
+        Chaque véhicule est disponible en concession avec un prix en jeu, un handling premium et un rendu
+        custom fidèle. Filtre par catégorie ou recherche un modèle précis.
+      </p>
+      <div class="stats">
+        <div class="stat"><strong id="statTotal">0</strong><span>Véhicules au catalogue</span></div>
+        <div class="stat"><strong id="statCategories">0</strong><span>Catégories</span></div>
+        <div class="stat"><strong>jg-handling</strong><span>Conduite réaliste</span></div>
+      </div>
+      <p class="disclaimer">
+        💡 Les prix affichés sont donnés à titre indicatif en argent in-game et peuvent évoluer selon l'économie du serveur.
+      </p>
+    </section>
+
+    <section style="padding-top:0;">
+      <div class="catalogue-controls neon-border">
+        <div class="search-row">
+          <input type="text" id="carSearch" placeholder="🔍 Rechercher un véhicule (ex: Zentorno, Elegy, Sultan...)" />
+          <select class="sort-select" id="sortSelect">
+            <option value="default">Trier : Par défaut</option>
+            <option value="price-asc">Prix croissant</option>
+            <option value="price-desc">Prix décroissant</option>
+            <option value="name-asc">Nom (A → Z)</option>
+          </select>
+        </div>
+        <div class="category-pills" id="categoryPills"></div>
+      </div>
+
+      <div class="results-row">
+        <span><strong id="resultCount">0</strong> véhicule(s) affiché(s)</span>
+      </div>
+
+      <div class="car-grid" id="carGrid"></div>
+    </section>
+
+    <footer class="footer">
+      <span>© 2026 Mont Revolution RP — Serveur FiveM Roleplay francophone.</span>
+      <span>Made with 💜 by the Mont Revolution Team • QBCore Edition.</span>
+    </footer>
+  </div>
+
+  <script>
+    /* =========================================================================
+       CATALOGUE DE VÉHICULES
+       -------------------------------------------------------------------------
+       Pour ajouter une voiture, copie-colle un bloc { ... } dans le tableau
+       "cars" ci-dessous et remplis les champs :
+
+         name     -> Nom du véhicule (obligatoire)
+         category -> Catégorie exacte, ex: "Sport", "Super", "SUV", "Berline",
+                     "Classique", "Moto", "Utilitaire", "Luxe"
+                     (les boutons de filtre se génèrent automatiquement à
+                     partir des catégories que tu utilises ici)
+         price    -> Prix en $ in-game, en nombre (sans virgule ni symbole)
+         image    -> Lien direct vers l'image (URL). Laisse "" si tu n'as pas
+                     encore l'image : un cadre néon avec une icône s'affichera
+                     à la place, puis tu n'auras qu'à coller l'URL plus tard.
+         badge    -> (optionnel) petit tag coloré, ex: "Nouveau", "Exclusif".
+                     Laisse "" si tu n'en veux pas.
+
+       Tu peux avoir 150, 200, 500 entrées : la page se charge et se filtre
+       automatiquement, aucune autre modification n'est nécessaire.
+       ========================================================================= */
+    const cars = [
+      { name: "Pfister Comet SR", category: "Sport", price: 68000, image: "", badge: "" },
+      { name: "Grotti Turismo Omaggio", category: "Super", price: 195000, image: "", badge: "Exclusif" },
+      { name: "Karin Sultan RS", category: "Sport", price: 42000, image: "", badge: "" },
+      { name: "Vapid Dominator GTX", category: "Sport", price: 51000, image: "", badge: "" },
+      { name: "Benefactor Glendale", category: "Berline", price: 18500, image: "", badge: "" },
+      { name: "Declasse Granger 3600LX", category: "SUV", price: 39000, image: "", badge: "" },
+      { name: "Pegassi Zentorno", category: "Super", price: 225000, image: "", badge: "Nouveau" },
+      { name: "Albany Roosevelt", category: "Classique", price: 27500, image: "", badge: "" },
+      { name: "Western Bagger", category: "Moto", price: 9500, image: "", badge: "" },
+      { name: "Vapid Sandking XL", category: "Utilitaire", price: 31000, image: "", badge: "" },
+      { name: "Enus Cognoscenti", category: "Luxe", price: 58000, image: "", badge: "" },
+      { name: "Obey Tailgater", category: "Berline", price: 29500, image: "", badge: "" },
+      { name: "Grotti Itali GTO", category: "Super", price: 178000, image: "", badge: "" },
+      { name: "Bravado Buffalo STX", category: "Sport", price: 36000, image: "", badge: "" },
+      { name: "Declasse Tornado", category: "Classique", price: 15500, image: "", badge: "" },
+      { name: "Nagasaki Bati 801RR", category: "Moto", price: 12500, image: "", badge: "" }
+    ];
+
+    const grid = document.getElementById('carGrid');
+    const pillsWrap = document.getElementById('categoryPills');
+    const searchInput = document.getElementById('carSearch');
+    const sortSelect = document.getElementById('sortSelect');
+    const resultCount = document.getElementById('resultCount');
+    const statTotal = document.getElementById('statTotal');
+    const statCategories = document.getElementById('statCategories');
+
+    let activeCategory = 'Tous';
+
+    function formatPrice(n) {
+      return '$' + Number(n).toLocaleString('en-US');
+    }
+
+    function renderPills() {
+      const categories = ['Tous', ...new Set(cars.map(c => c.category))];
+      pillsWrap.innerHTML = categories.map(cat =>
+        `<button class="pill ${cat === activeCategory ? 'active' : ''}" data-cat="${cat}">${cat}</button>`
+      ).join('');
+
+      pillsWrap.querySelectorAll('.pill').forEach(btn => {
+        btn.addEventListener('click', () => {
+          activeCategory = btn.dataset.cat;
+          renderPills();
+          renderGrid();
+        });
+      });
+    }
+
+    function renderGrid() {
+      const query = searchInput.value.trim().toLowerCase();
+      const sortMode = sortSelect.value;
+
+      let filtered = cars.filter(c => {
+        const matchesCategory = activeCategory === 'Tous' || c.category === activeCategory;
+        const matchesSearch = c.name.toLowerCase().includes(query);
+        return matchesCategory && matchesSearch;
+      });
+
+      if (sortMode === 'price-asc') filtered.sort((a, b) => a.price - b.price);
+      if (sortMode === 'price-desc') filtered.sort((a, b) => b.price - a.price);
+      if (sortMode === 'name-asc') filtered.sort((a, b) => a.name.localeCompare(b.name));
+
+      resultCount.textContent = filtered.length;
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `<div class="empty-state">Aucun véhicule ne correspond à ta recherche.</div>`;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(c => `
+        <article class="car-card">
+          <div class="car-media ${c.image ? '' : 'no-image'}">
+            ${c.image
+              ? `<img src="${c.image}" alt="${c.name}" loading="lazy" onerror="this.parentElement.classList.add('no-image'); this.remove();" />`
+              : `<div class="car-placeholder">🚗</div>`
+            }
+            <span class="car-category-badge">${c.category}</span>
+            ${c.badge ? `<span class="car-badge-tag">${c.badge}</span>` : ''}
+          </div>
+          <div class="car-body">
+            <h3>${c.name}</h3>
+            <div class="car-meta">
+              <span class="car-price">${formatPrice(c.price)}</span>
+              <span class="car-class">${c.category}</span>
+            </div>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function renderStats() {
+      statTotal.textContent = cars.length;
+      statCategories.textContent = new Set(cars.map(c => c.category)).size;
+    }
+
+    searchInput.addEventListener('input', renderGrid);
+    sortSelect.addEventListener('change', renderGrid);
+
+    renderStats();
+    renderPills();
+    renderGrid();
+  </script>
+</body>
+</html>
