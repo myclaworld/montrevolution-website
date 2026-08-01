@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Voitures — Mont Revolution RP</title>
-  <meta name="description" content="Catalogue complet des véhicules disponibles sur Mont Revolution RP — serveur FiveM QBCore francophone." />
+  <title>Règlements — Mont Revolution RP</title>
+  <meta name="description" content="Règlement officiel de Mont Revolution RP — serveur FiveM QBCore francophone : règles générales, roleplay, communication et sanctions." />
   <meta name="theme-color" content="#8E2CDD" />
   <link rel="icon" href="https://r2.fivemanage.com/u4uBEo79Ww8Q5ijMSBpxm/logo.png" type="image/png" />
-  <meta property="og:title" content="Voitures — Mont Revolution RP" />
-  <meta property="og:description" content="Le catalogue complet des véhicules de Mont Revolution RP." />
+  <meta property="og:title" content="Règlements — Mont Revolution RP" />
+  <meta property="og:description" content="Le règlement complet de Mont Revolution RP." />
   <meta property="og:image" content="https://r2.fivemanage.com/u4uBEo79Ww8Q5ijMSBpxm/logo.png" />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="fr_FR" />
@@ -295,6 +295,28 @@
       margin-top: 16px;
     }
 
+    .section-title {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 22px;
+      margin-bottom: 26px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(34px, 5vw, 64px);
+      line-height: .9;
+      letter-spacing: -.06em;
+      text-transform: uppercase;
+    }
+
+    .section-title p {
+      max-width: 460px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
     /* ==================== CATALOGUE CONTROLS ==================== */
     .catalogue-controls {
       border-radius: 30px;
@@ -330,89 +352,9 @@
       box-shadow: var(--shadow-blue);
     }
 
-    .sort-select {
+    .reset-btn {
       padding: 14px 18px;
       border-radius: 16px;
-      border: 1px solid rgba(255,255,255,.1);
-      background: rgba(0,0,0,.32);
-      color: var(--text);
-      font-size: 13px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: .04em;
-      outline: none;
-      cursor: pointer;
-    }
-
-    .price-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .price-label {
-      font-size: 12px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: .08em;
-      color: var(--muted);
-      white-space: nowrap;
-    }
-
-    .price-input {
-      width: 120px;
-      padding: 11px 14px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.1);
-      background: rgba(0,0,0,.32);
-      color: var(--text);
-      font-size: 13px;
-      font-weight: 700;
-      outline: none;
-      transition: .2s ease;
-    }
-
-    .price-input::placeholder { color: var(--muted); }
-    .price-input:focus { border-color: rgba(120,217,255,.5); box-shadow: var(--shadow-blue); }
-    /* hide number spinners for a cleaner look */
-    .price-input::-webkit-outer-spin-button,
-    .price-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
-    .price-input[type="number"] { -moz-appearance: textfield; }
-
-    .price-sep { color: var(--muted); font-weight: 700; }
-
-    .price-quick {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-    }
-
-    .price-quick button {
-      padding: 8px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.08);
-      background: rgba(255,255,255,.03);
-      color: #cdf4ff;
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: .04em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: .18s ease;
-    }
-
-    .price-quick button:hover,
-    .price-quick button.active {
-      border-color: rgba(120,217,255,.4);
-      background: rgba(120,217,255,.12);
-      color: #fff;
-    }
-
-    .reset-btn {
-      margin-left: auto;
-      padding: 10px 16px;
-      border-radius: 999px;
       border: 1px solid rgba(255,52,243,.3);
       background: rgba(255,52,243,.08);
       color: #ffb8f6;
@@ -422,6 +364,7 @@
       text-transform: uppercase;
       cursor: pointer;
       transition: .18s ease;
+      white-space: nowrap;
     }
 
     .reset-btn:hover { background: rgba(255,52,243,.18); border-color: rgba(255,52,243,.55); }
@@ -469,137 +412,154 @@
 
     .results-row strong { color: #fff; }
 
-    /* ==================== CAR GRID ==================== */
-    .car-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .car-card {
-      border-radius: 24px;
-      overflow: hidden;
-      background:
-        linear-gradient(160deg, rgba(255,255,255,.07), rgba(255,255,255,.02)),
-        rgba(4,7,18,.78);
-      border: 1px solid rgba(255,255,255,.09);
-      box-shadow: 0 18px 48px rgba(0,0,0,.34);
-      transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+    /* ==================== RULES LIST ==================== */
+    .rules-list {
       display: flex;
       flex-direction: column;
+      gap: 14px;
     }
 
-    .car-card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(120,217,255,.4);
-      box-shadow: 0 24px 60px rgba(0,0,0,.42), 0 0 30px rgba(120,217,255,.16);
-    }
-
-    .car-media {
-      position: relative;
-      aspect-ratio: 16/10;
+    .rule-card {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 18px;
+      border-radius: 22px;
+      padding: 22px 24px;
       background:
-        radial-gradient(circle at 30% 20%, rgba(183,24,255,.28), transparent 55%),
-        radial-gradient(circle at 75% 60%, rgba(24,168,255,.24), transparent 55%),
-        linear-gradient(150deg, rgba(19,12,47,.9), rgba(1,7,18,.94));
-      overflow: hidden;
+        linear-gradient(160deg, rgba(255,255,255,.06), rgba(255,255,255,.015)),
+        rgba(4,7,18,.72);
+      border: 1px solid rgba(255,255,255,.08);
+      box-shadow: 0 16px 40px rgba(0,0,0,.3);
+      transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
     }
 
-    .car-media img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
+    .rule-card:hover {
+      transform: translateX(4px);
+      border-color: rgba(120,217,255,.35);
+      box-shadow: 0 20px 50px rgba(0,0,0,.36), 0 0 24px rgba(120,217,255,.14);
     }
 
-    .car-media.no-image {
+    .rule-number {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(255,52,243,.85), rgba(24,168,255,.85));
+      box-shadow: 0 0 22px rgba(183,24,255,.35);
+      font-weight: 950;
+      font-size: 15px;
+      color: white;
+      align-self: start;
+    }
+
+    .rule-body { display: flex; flex-direction: column; gap: 8px; }
+
+    .rule-top {
       display: flex;
       align-items: center;
-      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
     }
 
-    .car-placeholder {
-      font-size: 46px;
-      opacity: .3;
-      filter: grayscale(1);
+    .rule-body h3 {
+      font-size: 17px;
+      letter-spacing: -.01em;
     }
 
-    .car-category-badge {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      padding: 6px 12px;
+    .rule-category-badge {
+      padding: 4px 11px;
       border-radius: 999px;
-      background: rgba(3,5,14,.72);
-      backdrop-filter: blur(8px);
+      background: rgba(120,217,255,.1);
       border: 1px solid rgba(120,217,255,.3);
       font-size: 10px;
       font-weight: 900;
       text-transform: uppercase;
-      letter-spacing: .1em;
-      color: #cdf4ff;
+      letter-spacing: .08em;
+      color: #a8e6ff;
     }
 
-    .car-badge-tag {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      padding: 6px 10px;
+    .rule-severity {
+      padding: 4px 11px;
       border-radius: 999px;
-      background: linear-gradient(135deg, var(--purple), var(--blue));
       font-size: 10px;
       font-weight: 900;
       text-transform: uppercase;
       letter-spacing: .08em;
-      color: white;
-      box-shadow: 0 0 16px rgba(140,54,255,.5);
     }
 
-    .car-body {
-      padding: 16px 16px 18px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      flex: 1;
-    }
+    .sev-info { background: rgba(24,168,255,.12); border: 1px solid rgba(24,168,255,.35); color: #9cd9ff; }
+    .sev-warn { background: rgba(255,140,0,.14); border: 1px solid rgba(255,140,0,.4); color: #ffb766; }
+    .sev-ban  { background: rgba(255,43,134,.14); border: 1px solid rgba(255,43,134,.4); color: #ff9dc4; }
 
-    .car-body h3 {
-      font-size: 16px;
-      line-height: 1.25;
-      letter-spacing: -.01em;
-    }
-
-    .car-meta {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: auto;
-    }
-
-    .car-price {
-      font-weight: 900;
-      font-size: 15px;
-      background: linear-gradient(90deg, #ff44f6, #6bdcff);
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-
-    .car-class {
-      font-size: 11px;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: .06em;
-      font-weight: 700;
-    }
+    .rule-body p { color: #c4d5ef; line-height: 1.65; font-size: 14.5px; }
 
     .empty-state {
-      grid-column: 1 / -1;
       text-align: center;
       padding: 60px 20px;
       color: var(--muted);
       font-size: 15px;
       border-radius: 24px;
       border: 1px dashed rgba(255,255,255,.14);
+    }
+
+    /* ==================== USEFUL LINKS ==================== */
+    .links-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .link-card {
+      position: relative;
+      border-radius: 24px;
+      padding: 22px;
+      background:
+        linear-gradient(160deg, rgba(255,255,255,.08), rgba(255,255,255,.02)),
+        rgba(4,7,18,.78);
+      border: 1px solid rgba(255,255,255,.09);
+      box-shadow: 0 20px 50px rgba(0,0,0,.32);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      transition: .2s ease;
+    }
+
+    .link-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(120,217,255,.4);
+      box-shadow: 0 24px 60px rgba(0,0,0,.4), 0 0 26px rgba(120,217,255,.16);
+    }
+
+    .link-icon {
+      width: 48px;
+      height: 48px;
+      flex-shrink: 0;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      font-size: 22px;
+      background: linear-gradient(135deg, var(--purple), var(--blue));
+      box-shadow: 0 0 20px rgba(140,54,255,.5);
+    }
+
+    .link-copy strong {
+      display: block;
+      font-size: 15px;
+      letter-spacing: -.01em;
+    }
+
+    .link-copy span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .link-arrow {
+      margin-left: auto;
+      color: #7bdcff;
+      font-size: 18px;
     }
 
     /* ==================== FOOTER (identical to main page) ==================== */
@@ -621,12 +581,11 @@
     }
 
     @media (max-width: 1200px) {
-      .car-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .links-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
 
     @media (max-width: 1050px) {
       .stats { max-width: 100%; }
-      .car-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .topbar { border-radius: 26px; flex-wrap: wrap; justify-content: center; }
     }
 
@@ -634,11 +593,9 @@
       .page { width: min(100% - 22px, 1440px); }
       .nav { display: none; }
       .stats { grid-template-columns: 1fr; }
-      .car-grid { grid-template-columns: 1fr; }
       .search-row { flex-direction: column; }
-      .price-row { flex-direction: column; align-items: stretch; }
-      .price-input { width: 100%; }
-      .reset-btn { margin-left: 0; }
+      .links-grid { grid-template-columns: 1fr; }
+      .rule-card { grid-template-columns: 1fr; }
       .results-row { flex-direction: column; align-items: flex-start; gap: 6px; }
     }
   </style>
@@ -658,8 +615,8 @@
       <nav class="nav" aria-label="Navigation principale">
         <a href="index.html#experience">Expérience</a>
         <a href="index.html#tabs">Univers</a>
-        <a href="cars.html" class="active">Voitures</a>
-        <a href="reglements.html">Règlements</a>
+        <a href="cars.html">Voitures</a>
+        <a href="reglements.html" class="active">Règlements</a>
         <a href="index.html#features">Systèmes</a>
         <a href="index.html#vote">Voter</a>
         <a href="index.html#rejoindre">Rejoindre</a>
@@ -668,50 +625,46 @@
     </header>
 
     <section class="catalogue-hero" id="accueil">
-      <div class="eyebrow"><span class="live-dot"></span> Concession Mont Revolution • Catalogue officiel</div>
-      <h1>Voitures</h1>
+      <div class="eyebrow"><span class="live-dot"></span> Charte officielle • Mont Revolution RP</div>
+      <h1>Règlements</h1>
       <p class="tagline">
-        Le garage complet de Mont Revolution RP : sportives, super-cars, SUV, berlines, classiques et motos.
-        Chaque véhicule est disponible en concession avec un prix en jeu, un handling premium et un rendu
-        custom fidèle. Filtre par catégorie ou recherche un modèle précis.
+        Le règlement complet de Mont Revolution RP : les règles à respecter pour un roleplay sérieux et une
+        communauté saine. Lis-le en entier avant de rejoindre la ville — l'ignorance des règles n'excuse pas
+        les sanctions. Filtre par catégorie ou recherche un mot-clé.
       </p>
       <div class="stats">
-        <div class="stat"><strong id="statTotal">0</strong><span>Véhicules au catalogue</span></div>
+        <div class="stat"><strong id="statTotal">0</strong><span>Règles au total</span></div>
         <div class="stat"><strong id="statCategories">0</strong><span>Catégories</span></div>
-        <div class="stat"><strong>jg-handling</strong><span>Conduite réaliste</span></div>
+        <div class="stat"><strong>RP+</strong><span>Roleplay sérieux exigé</span></div>
       </div>
       <p class="disclaimer">
-        💡 Les prix affichés sont donnés à titre indicatif en argent in-game et peuvent évoluer selon l'économie du serveur.
+        💡 Ce règlement peut évoluer. Consulte régulièrement cette page et le canal #règlements du Discord
+        pour rester informé des mises à jour.
       </p>
     </section>
 
     <section style="padding-top:0;">
       <div class="catalogue-controls neon-border">
         <div class="search-row">
-          <input type="text" id="carSearch" placeholder="🔍 Rechercher un véhicule (ex: Zentorno, Elegy, Sultan...)" />
-          <select class="sort-select" id="sortSelect">
-            <option value="default">Trier : Par défaut</option>
-            <option value="price-asc">Prix croissant</option>
-            <option value="price-desc">Prix décroissant</option>
-            <option value="name-asc">Nom (A → Z)</option>
-          </select>
-        </div>
-        <div class="price-row">
-          <span class="price-label">💰 Prix :</span>
-          <input type="number" id="priceMin" class="price-input" placeholder="Min" min="0" />
-          <span class="price-sep">—</span>
-          <input type="number" id="priceMax" class="price-input" placeholder="Max" min="0" />
-          <div class="price-quick" id="priceQuick"></div>
+          <input type="text" id="ruleSearch" placeholder="🔍 Rechercher une règle (ex: metagaming, RDM, combat log...)" />
           <button type="button" class="reset-btn" id="resetFilters">✕ Réinitialiser</button>
         </div>
         <div class="category-pills" id="categoryPills"></div>
       </div>
 
       <div class="results-row">
-        <span><strong id="resultCount">0</strong> véhicule(s) affiché(s)</span>
+        <span><strong id="resultCount">0</strong> règle(s) affichée(s)</span>
       </div>
 
-      <div class="car-grid" id="carGrid"></div>
+      <div class="rules-list" id="rulesList"></div>
+    </section>
+
+    <section id="liens">
+      <div class="section-title">
+        <h2>Liens utiles.</h2>
+        <p>Discord, formulaires, réseaux sociaux et tout ce qui touche au règlement et à la communauté.</p>
+      </div>
+      <div class="links-grid" id="linksGrid"></div>
     </section>
 
     <footer class="footer">
@@ -722,74 +675,73 @@
 
   <script>
     /* =========================================================================
-       CATALOGUE DE VÉHICULES
+       RÈGLEMENT — RÈGLES
        -------------------------------------------------------------------------
-       Pour ajouter une voiture, copie-colle un bloc { ... } dans le tableau
-       "cars" ci-dessous et remplis les champs :
+       Pour ajouter une règle, copie-colle un bloc { ... } dans le tableau
+       "rules" ci-dessous et remplis les champs :
 
-         name     -> Nom du véhicule (obligatoire)
-         category -> Catégorie exacte, ex: "Sport", "Super", "SUV", "Berline",
-                     "Classique", "Moto", "Utilitaire", "Luxe"
-                     (les boutons de filtre se génèrent automatiquement à
-                     partir des catégories que tu utilises ici)
-         price    -> Prix en $ in-game, en nombre (sans virgule ni symbole)
-         image    -> Lien direct vers l'image (URL). Laisse "" si tu n'as pas
-                     encore l'image : un cadre néon avec une icône s'affichera
-                     à la place, puis tu n'auras qu'à coller l'URL plus tard.
-         badge    -> (optionnel) petit tag coloré, ex: "Nouveau", "Exclusif".
-                     Laisse "" si tu n'en veux pas.
+         category -> Catégorie exacte, ex: "Général", "Roleplay", "Communication",
+                     "Combat", "Sanctions"... (les boutons de filtre se
+                     génèrent automatiquement à partir des catégories utilisées)
+         title    -> Titre court de la règle (obligatoire)
+         text     -> Description complète de la règle (obligatoire)
+         severity -> "info", "warn" ou "ban" — juste une couleur indicative
+                     (info = bleu, warn = orange, ban = rose/rouge)
 
-       Tu peux avoir 150, 200, 500 entrées : la page se charge et se filtre
-       automatiquement, aucune autre modification n'est nécessaire.
+       Tu peux avoir 50, 100, 200 règles : la page se numérote, se filtre et
+       se recherche automatiquement, aucune autre modification n'est nécessaire.
        ========================================================================= */
-    const cars = [
-      { name: "Pfister Comet SR", category: "Sport", price: 68000, image: "", badge: "" },
-      { name: "Grotti Turismo Omaggio", category: "Super", price: 195000, image: "", badge: "Exclusif" },
-      { name: "Karin Sultan RS", category: "Sport", price: 42000, image: "", badge: "" },
-      { name: "Vapid Dominator GTX", category: "Sport", price: 51000, image: "", badge: "" },
-      { name: "Benefactor Glendale", category: "Berline", price: 18500, image: "", badge: "" },
-      { name: "Declasse Granger 3600LX", category: "SUV", price: 39000, image: "", badge: "" },
-      { name: "Pegassi Zentorno", category: "Super", price: 225000, image: "", badge: "Nouveau" },
-      { name: "Albany Roosevelt", category: "Classique", price: 27500, image: "", badge: "" },
-      { name: "Western Bagger", category: "Moto", price: 9500, image: "", badge: "" },
-      { name: "Vapid Sandking XL", category: "Utilitaire", price: 31000, image: "", badge: "" },
-      { name: "Enus Cognoscenti", category: "Luxe", price: 58000, image: "", badge: "" },
-      { name: "Obey Tailgater", category: "Berline", price: 29500, image: "", badge: "" },
-      { name: "Grotti Itali GTO", category: "Super", price: 178000, image: "", badge: "" },
-      { name: "Bravado Buffalo STX", category: "Sport", price: 36000, image: "", badge: "" },
-      { name: "Declasse Tornado", category: "Classique", price: 15500, image: "", badge: "" },
-      { name: "Nagasaki Bati 801RR", category: "Moto", price: 12500, image: "", badge: "" }
+    const rules = [
+      { category: "Général", title: "Respect obligatoire", text: "Le respect entre joueurs et envers le staff est exigé à tout moment, en jeu comme sur Discord. Insultes, harcèlement et discrimination sont interdits et sanctionnés immédiatement.", severity: "warn" },
+      { category: "Général", title: "Âge minimum", text: "Le serveur est réservé aux joueurs de 16 ans et plus en raison du contenu roleplay mature (violence fictive, thèmes sensibles encadrés).", severity: "info" },
+      { category: "Général", title: "Un seul compte", text: "Chaque joueur ne peut posséder qu'un seul compte et un seul personnage actif. La création de comptes multiples pour contourner une sanction est strictement interdite.", severity: "ban" },
+      { category: "Roleplay", title: "Metagaming interdit", text: "Il est interdit d'utiliser une information obtenue hors roleplay (Discord, stream, OOC) pour agir en jeu. Ton personnage ne sait que ce qu'il a vécu en jeu.", severity: "warn" },
+      { category: "Roleplay", title: "Powergaming interdit", text: "Il est interdit de forcer une action sur un autre joueur sans lui laisser de possibilité de réaction (ex: menotter sans /me, actions irréalistes, etc.).", severity: "warn" },
+      { category: "Roleplay", title: "RP de vie (Fear RP)", text: "Ton personnage doit réagir avec cohérence face au danger : une arme pointée sur toi doit provoquer une réaction de peur réaliste, pas un combat inconsidéré.", severity: "warn" },
+      { category: "Roleplay", title: "Nom de personnage réaliste", text: "Les noms de personnages doivent être réalistes (prénom + nom). Les noms de célébrités, mèmes ou noms absurdes sont interdits.", severity: "info" },
+      { category: "Communication", title: "Français uniquement en RP", text: "Toutes les interactions roleplay en jeu doivent se faire en français. Le OOC (hors roleplay) doit rester minimal et clairement identifié.", severity: "info" },
+      { category: "Communication", title: "Pas de pub non autorisée", text: "La publicité pour d'autres serveurs, discords ou services externes sans accord du staff est interdite et entraîne un bannissement immédiat.", severity: "ban" },
+      { category: "Combat", title: "RDM interdit", text: "Le Random Death Match (tuer un joueur sans raison ni interaction roleplay valable) est strictement interdit.", severity: "ban" },
+      { category: "Combat", title: "VDM interdit", text: "Le Vehicle Death Match (utiliser un véhicule comme arme sans roleplay) est interdit et sanctionné.", severity: "ban" },
+      { category: "Combat", title: "Combat log interdit", text: "Se déconnecter volontairement pour éviter les conséquences d'un roleplay (arrestation, combat, capture) est interdit.", severity: "ban" },
+      { category: "Combat", title: "Règle des 3 avertissements", text: "En combat armé, un avertissement clair doit être donné avant d'ouvrir le feu, sauf situation de légitime défense immédiate.", severity: "warn" },
+      { category: "Sanctions", title: "Système d'avertissements", text: "La majorité des infractions mineures entraînent d'abord un avertissement, puis un mute ou kick en cas de récidive, avant un bannissement.", severity: "info" },
+      { category: "Sanctions", title: "Bannissement immédiat", text: "Cheat, exploit de bug, RDM/VDM répété, propos haineux ou discriminatoires entraînent un bannissement immédiat sans avertissement préalable.", severity: "ban" },
+      { category: "Sanctions", title: "Droit de contestation", text: "Toute sanction peut être contestée via un ticket Discord dans la section prévue à cet effet, avec preuve à l'appui si possible.", severity: "info" }
     ];
 
-    const grid = document.getElementById('carGrid');
+    /* =========================================================================
+       LIENS UTILES
+       -------------------------------------------------------------------------
+       Ajoute un lien en copiant un bloc { ... } dans le tableau "usefulLinks" :
+
+         icon  -> Un emoji représentant le lien
+         label -> Titre affiché
+         desc  -> Petite description
+         url   -> Lien complet (https://...)
+       ========================================================================= */
+    const usefulLinks = [
+      { icon: "💬", label: "Discord officiel", desc: "Rejoins la communauté et lis le règlement complet", url: "https://discord.gg/montrevolution" },
+      { icon: "📜", label: "Charte complète (PDF/Doc)", desc: "Version détaillée et imprimable du règlement", url: "#" },
+      { icon: "🎫", label: "Faire une plainte", desc: "Formulaire de signalement pour le staff", url: "#" },
+      { icon: "🛠️", label: "Contester une sanction", desc: "Ouvre un ticket pour contester un ban/mute", url: "#" },
+      { icon: "🎵", label: "TikTok", desc: "Suis l'actualité du serveur", url: "https://www.tiktok.com/@montrevolution_rp" },
+      { icon: "🗳️", label: "Voter pour le serveur", desc: "Vote et reçois une récompense en jeu", url: "index.html#vote" }
+    ];
+
+    const rulesList = document.getElementById('rulesList');
     const pillsWrap = document.getElementById('categoryPills');
-    const searchInput = document.getElementById('carSearch');
-    const sortSelect = document.getElementById('sortSelect');
+    const searchInput = document.getElementById('ruleSearch');
     const resultCount = document.getElementById('resultCount');
     const statTotal = document.getElementById('statTotal');
     const statCategories = document.getElementById('statCategories');
-    const priceMinInput = document.getElementById('priceMin');
-    const priceMaxInput = document.getElementById('priceMax');
-    const priceQuickWrap = document.getElementById('priceQuick');
     const resetBtn = document.getElementById('resetFilters');
+    const linksGrid = document.getElementById('linksGrid');
 
     let activeCategory = 'Tous';
-    let activeQuickRange = null; // index into QUICK_RANGES, or null
-
-    // Quick price-range shortcuts — edit these to match your economy.
-    const QUICK_RANGES = [
-      { label: '< $20k', min: 0, max: 20000 },
-      { label: '$20k–$60k', min: 20000, max: 60000 },
-      { label: '$60k–$150k', min: 60000, max: 150000 },
-      { label: '$150k+', min: 150000, max: Infinity }
-    ];
-
-    function formatPrice(n) {
-      return '$' + Number(n).toLocaleString('en-US');
-    }
 
     function renderPills() {
-      const categories = ['Tous', ...new Set(cars.map(c => c.category))];
+      const categories = ['Tous', ...new Set(rules.map(r => r.category))];
       pillsWrap.innerHTML = categories.map(cat =>
         `<button class="pill ${cat === activeCategory ? 'active' : ''}" data-cat="${cat}">${cat}</button>`
       ).join('');
@@ -798,113 +750,79 @@
         btn.addEventListener('click', () => {
           activeCategory = btn.dataset.cat;
           renderPills();
-          renderGrid();
+          renderList();
         });
       });
     }
 
-    function renderPriceQuick() {
-      priceQuickWrap.innerHTML = QUICK_RANGES.map((r, i) =>
-        `<button type="button" class="${activeQuickRange === i ? 'active' : ''}" data-range="${i}">${r.label}</button>`
-      ).join('');
-
-      priceQuickWrap.querySelectorAll('button').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const i = Number(btn.dataset.range);
-          if (activeQuickRange === i) {
-            // clicking the active one again clears it
-            activeQuickRange = null;
-            priceMinInput.value = '';
-            priceMaxInput.value = '';
-          } else {
-            activeQuickRange = i;
-            const r = QUICK_RANGES[i];
-            priceMinInput.value = r.min;
-            priceMaxInput.value = r.max === Infinity ? '' : r.max;
-          }
-          renderPriceQuick();
-          renderGrid();
-        });
-      });
+    function severityLabel(sev) {
+      if (sev === 'ban') return 'Bannissement';
+      if (sev === 'warn') return 'Avertissement';
+      return 'Info';
     }
 
-    function renderGrid() {
+    function renderList() {
       const query = searchInput.value.trim().toLowerCase();
-      const sortMode = sortSelect.value;
-      const min = priceMinInput.value !== '' ? Number(priceMinInput.value) : 0;
-      const max = priceMaxInput.value !== '' ? Number(priceMaxInput.value) : Infinity;
 
-      let filtered = cars.filter(c => {
-        const matchesCategory = activeCategory === 'Tous' || c.category === activeCategory;
-        const matchesSearch = c.name.toLowerCase().includes(query);
-        const matchesPrice = c.price >= min && c.price <= max;
-        return matchesCategory && matchesSearch && matchesPrice;
+      const filtered = rules.filter(r => {
+        const matchesCategory = activeCategory === 'Tous' || r.category === activeCategory;
+        const matchesSearch = r.title.toLowerCase().includes(query) || r.text.toLowerCase().includes(query);
+        return matchesCategory && matchesSearch;
       });
-
-      if (sortMode === 'price-asc') filtered.sort((a, b) => a.price - b.price);
-      if (sortMode === 'price-desc') filtered.sort((a, b) => b.price - a.price);
-      if (sortMode === 'name-asc') filtered.sort((a, b) => a.name.localeCompare(b.name));
 
       resultCount.textContent = filtered.length;
 
       if (filtered.length === 0) {
-        grid.innerHTML = `<div class="empty-state">Aucun véhicule ne correspond à ta recherche.</div>`;
+        rulesList.innerHTML = `<div class="empty-state">Aucune règle ne correspond à ta recherche.</div>`;
         return;
       }
 
-      grid.innerHTML = filtered.map(c => `
-        <article class="car-card">
-          <div class="car-media ${c.image ? '' : 'no-image'}">
-            ${c.image
-              ? `<img src="${c.image}" alt="${c.name}" loading="lazy" onerror="this.parentElement.classList.add('no-image'); this.remove();" />`
-              : `<div class="car-placeholder">🚗</div>`
-            }
-            <span class="car-category-badge">${c.category}</span>
-            ${c.badge ? `<span class="car-badge-tag">${c.badge}</span>` : ''}
-          </div>
-          <div class="car-body">
-            <h3>${c.name}</h3>
-            <div class="car-meta">
-              <span class="car-price">${formatPrice(c.price)}</span>
-              <span class="car-class">${c.category}</span>
+      rulesList.innerHTML = filtered.map((r, i) => `
+        <article class="rule-card">
+          <div class="rule-number">${String(i + 1).padStart(2, '0')}</div>
+          <div class="rule-body">
+            <div class="rule-top">
+              <h3>${r.title}</h3>
+              <span class="rule-category-badge">${r.category}</span>
+              <span class="rule-severity sev-${r.severity || 'info'}">${severityLabel(r.severity)}</span>
             </div>
+            <p>${r.text}</p>
           </div>
         </article>
       `).join('');
     }
 
     function renderStats() {
-      statTotal.textContent = cars.length;
-      statCategories.textContent = new Set(cars.map(c => c.category)).size;
+      statTotal.textContent = rules.length;
+      statCategories.textContent = new Set(rules.map(r => r.category)).size;
     }
 
-    searchInput.addEventListener('input', renderGrid);
-    sortSelect.addEventListener('change', renderGrid);
+    function renderLinks() {
+      linksGrid.innerHTML = usefulLinks.map(l => `
+        <a class="link-card" href="${l.url}" target="${l.url.startsWith('http') ? '_blank' : '_self'}" rel="noreferrer">
+          <div class="link-icon">${l.icon}</div>
+          <div class="link-copy">
+            <strong>${l.label}</strong>
+            <span>${l.desc}</span>
+          </div>
+          <span class="link-arrow">↗</span>
+        </a>
+      `).join('');
+    }
 
-    [priceMinInput, priceMaxInput].forEach(input => {
-      input.addEventListener('input', () => {
-        activeQuickRange = null; // typing manually clears the quick-pick highlight
-        renderPriceQuick();
-        renderGrid();
-      });
-    });
+    searchInput.addEventListener('input', renderList);
 
     resetBtn.addEventListener('click', () => {
       activeCategory = 'Tous';
-      activeQuickRange = null;
       searchInput.value = '';
-      sortSelect.value = 'default';
-      priceMinInput.value = '';
-      priceMaxInput.value = '';
       renderPills();
-      renderPriceQuick();
-      renderGrid();
+      renderList();
     });
 
     renderStats();
     renderPills();
-    renderPriceQuick();
-    renderGrid();
+    renderList();
+    renderLinks();
   </script>
 </body>
 </html>
