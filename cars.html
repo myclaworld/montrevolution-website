@@ -474,9 +474,12 @@
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 18px;
+      perspective: 1400px;
     }
 
     .car-card {
+      position: relative;
+      z-index: 1;
       border-radius: 24px;
       overflow: hidden;
       background:
@@ -484,25 +487,39 @@
         rgba(4,7,18,.78);
       border: 1px solid rgba(255,255,255,.09);
       box-shadow: 0 18px 48px rgba(0,0,0,.34);
-      transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+      transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease, z-index 0s;
+      transform-style: preserve-3d;
       display: flex;
       flex-direction: column;
     }
 
     .car-card:hover {
-      transform: translateY(-6px);
+      z-index: 40;
+      overflow: visible;
       border-color: rgba(120,217,255,.4);
       box-shadow: 0 24px 60px rgba(0,0,0,.42), 0 0 30px rgba(120,217,255,.16);
     }
 
     .car-media {
       position: relative;
+      z-index: 1;
       aspect-ratio: 16/10;
-      background:
+      background-color: #03050d;
+      background-image:
         radial-gradient(circle at 30% 20%, rgba(183,24,255,.28), transparent 55%),
         radial-gradient(circle at 75% 60%, rgba(24,168,255,.24), transparent 55%),
         linear-gradient(150deg, rgba(19,12,47,.9), rgba(1,7,18,.94));
       overflow: hidden;
+      transition: transform .38s cubic-bezier(.2,.8,.2,1), border-radius .3s ease, box-shadow .3s ease, z-index 0s;
+      transform-origin: center 38%;
+      will-change: transform;
+    }
+
+    .car-card:hover .car-media {
+      z-index: 5;
+      transform: scale(1.5);
+      border-radius: 20px;
+      box-shadow: 0 30px 80px rgba(0,0,0,.65), 0 0 55px rgba(120,217,255,.4);
     }
 
     .car-media img {
@@ -510,6 +527,11 @@
       height: 100%;
       object-fit: cover;
       display: block;
+      transition: object-fit 0s;
+    }
+
+    .car-card:hover .car-media img {
+      object-fit: contain;
     }
 
     .car-media.no-image {
@@ -538,6 +560,7 @@
       text-transform: uppercase;
       letter-spacing: .1em;
       color: #cdf4ff;
+      z-index: 2;
     }
 
     .car-badge-tag {
@@ -553,9 +576,13 @@
       letter-spacing: .08em;
       color: white;
       box-shadow: 0 0 16px rgba(140,54,255,.5);
+      z-index: 2;
     }
 
     .car-body {
+      position: relative;
+      z-index: 2;
+      background: inherit;
       padding: 16px 16px 18px;
       display: flex;
       flex-direction: column;
@@ -590,6 +617,11 @@
       text-transform: uppercase;
       letter-spacing: .06em;
       font-weight: 700;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .car-media, .car-card { transition: none !important; }
+      .car-card:hover .car-media { transform: none; }
     }
 
     .empty-state {
@@ -659,7 +691,6 @@
         <a href="index.html#experience">Expérience</a>
         <a href="index.html#tabs">Univers</a>
         <a href="cars.html" class="active">Voitures</a>
-        <a href="reglements.html">Règlements</a>
         <a href="index.html#features">Systèmes</a>
         <a href="index.html#vote">Voter</a>
         <a href="index.html#rejoindre">Rejoindre</a>
@@ -742,23 +773,24 @@
        Tu peux avoir 150, 200, 500 entrées : la page se charge et se filtre
        automatiquement, aucune autre modification n'est nécessaire.
        ========================================================================= */
-    const cars = [
-      { name: "Pfister Comet SR", category: "Sport", price: 68000, image: "", badge: "" },
-      { name: "Grotti Turismo Omaggio", category: "Super", price: 195000, image: "", badge: "Exclusif" },
-      { name: "Karin Sultan RS", category: "Sport", price: 42000, image: "", badge: "" },
-      { name: "Vapid Dominator GTX", category: "Sport", price: 51000, image: "", badge: "" },
-      { name: "Benefactor Glendale", category: "Berline", price: 18500, image: "", badge: "" },
-      { name: "Declasse Granger 3600LX", category: "SUV", price: 39000, image: "", badge: "" },
-      { name: "Pegassi Zentorno", category: "Super", price: 225000, image: "", badge: "Nouveau" },
-      { name: "Albany Roosevelt", category: "Classique", price: 27500, image: "", badge: "" },
-      { name: "Western Bagger", category: "Moto", price: 9500, image: "", badge: "" },
-      { name: "Vapid Sandking XL", category: "Utilitaire", price: 31000, image: "", badge: "" },
-      { name: "Enus Cognoscenti", category: "Luxe", price: 58000, image: "", badge: "" },
-      { name: "Obey Tailgater", category: "Berline", price: 29500, image: "", badge: "" },
-      { name: "Grotti Itali GTO", category: "Super", price: 178000, image: "", badge: "" },
-      { name: "Bravado Buffalo STX", category: "Sport", price: 36000, image: "", badge: "" },
-      { name: "Declasse Tornado", category: "Classique", price: 15500, image: "", badge: "" },
-      { name: "Nagasaki Bati 801RR", category: "Moto", price: 12500, image: "", badge: "" }
+ const cars = [
+      { name: "BMW MX5", category: "Sport", price: 25, image: "https://cdn.discordapp.com/attachments/1532774293983989981/1532774294541701130/image.png?ex=6a6f644d&is=6a6e12cd&hm=2da52bad742701b011457e0bde603be0405c1bb488b0d4be47cecdcb1c42cf88&", badge: "" },
+      { name: "Urus Mansory", category: "Sport", price: 25, image: "https://media.discordapp.net/attachments/1532774984999768084/1532774985360212061/image.png?ex=6a6f64f2&is=6a6e1372&hm=24f0fd9f836cc0144203f8b5784f8e88d1b987521b703633ba40f8b60e7c03dd&=&format=webp&quality=lossless&width=1280&height=1024", badge: "" },
+      { name: "Ford Bronco", category: "Suv", price: 25, image: "https://media.discordapp.net/attachments/1532774600977682483/1532774601275346954/image.png?ex=6a6f6496&is=6a6e1316&hm=99b5dc8cbeb238bfa2210dd9260171c8fcd509af1a3d690e4641d7b0cfdc6ea5&=&format=webp&quality=lossless&width=1280&height=1024", badge: "Exclusif" },
+      { name: "BMW MX5", category: "Sport", price: 25, image: "https://media.discordapp.net/attachments/1532774293983989981/1532774294541701130/image.png?ex=6a6f644d&is=6a6e12cd&hm=2da52bad742701b011457e0bde603be0405c1bb488b0d4be47cecdcb1c42cf88&=&format=webp&quality=lossless&width=1280&height=1024", badge: "" },
+      { name: "GMC 1500 Droppper", category: "Classique", price: 25, image: "https://media.discordapp.net/attachments/1532774065654464664/1532774066459508736/image.png?ex=6a6f6417&is=6a6e1297&hm=f798e98ce2ccbe33541a4a1a6b2e841003f12c59cbd9b9199227db0d29ec2742&=&format=webp&quality=lossless&width=1280&height=1024", badge: "" },
+      { name: "Cyber Truck", category: "Suv", price: 25, image: "https://media.discordapp.net/attachments/1532773776528244917/1532773777103130844/image.png?ex=6a6f63d2&is=6a6e1252&hm=58c16c138d5994f0f56cd283c681c9bdf70b5d9c988bc6628968468f4af90a06&=&format=webp&quality=lossless&width=1280&height=1024", badge: "" },
+      { name: "Carbon JDM BRZ", category: "Sport", price: 25, image: "https://media.discordapp.net/attachments/1532773483233153094/1532773483669618799/image.png?ex=6a6f638c&is=6a6e120c&hm=7568ed2c9891c6a408b72b46619690a13a4f58d690ef67090a6c2c396b869513&=&format=webp&quality=lossless&width=1024&height=1024", badge: "" },
+      { name: "Canis Jeep SRT8", category: "Suv", price: 25, image: "https://media.discordapp.net/attachments/1532766537629306981/1532766538195669183/image.png?ex=6a6f5d14&is=6a6e0b94&hm=feda417b290143a33dee901a51372ab0d3a214e29a0badfff4cc2fb5bf9b56a9&=&format=webp&quality=lossless&width=1024&height=1024", badge: "Nouveau" },
+      { name: "Bagged Van", category: "Classique", price: 25, image: "https://media.discordapp.net/attachments/1532766288085123353/1532766288567599226/image.png?ex=6a6f5cd8&is=6a6e0b58&hm=19055685cfc35d9acd2872b7e6fe45c32d6032c405a1e68ae3fbec08e58b5fef&=&format=webp&quality=lossless&width=1536&height=864", badge: "" },
+      { name: "Rover", category: "Suv", price: 25, image: "https://media.discordapp.net/attachments/1532765922857586929/1532765923256307832/image.png?ex=6a6f5c81&is=6a6e0b01&hm=c7b7d9be05496d04dbd68f96ad05c9e92ea282ab687a06571033ac1204979aa3&=&format=webp&quality=lossless&width=1024&height=1024", badge: "" },
+      { name: "Bmw G20", category: "Berline", price: 25, image: "https://media.discordapp.net/attachments/1532764916178489364/1532764917369667634/image.png?ex=6a6f5b91&is=6a6e0a11&hm=f1e3aded1fdc93662e60a5a03d66cb90139fde7719eac5ba30d088228c64dd7f&=&format=webp&quality=lossless&width=1536&height=864", badge: "" },
+      { name: "Escalade Bagged", category: "Suv", price: 25, image: "https://media.discordapp.net/attachments/1532764817881039088/1532764818816373029/image.png?ex=6a6f5b7a&is=6a6e09fa&hm=8ab17f23a4c2a12042547b0fe0eb5df41bed9585e5ba29fba6fa253d6326533a&=&format=webp&quality=lossless&width=1536&height=864", badge: "" },
+      { name: "Chrysler 300 Base", category: "Berline", price: 25, image: "https://media.discordapp.net/attachments/1532764363432132779/1532764363927195951/image.png?ex=6a6f5b0d&is=6a6e098d&hm=ce7e1b8d6f513bd85dddf82aa4eb05a21829485b3377cddaa4022bd8ab73afdb&=&format=webp&quality=lossless&width=1024&height=1024", badge: "" },
+      { name: "BMW M3 Comp", category: "Berline", price: 25, image: "https://media.discordapp.net/attachments/1532763588698312795/1532763589440700548/image.png?ex=6a6f5a55&is=6a6e08d5&hm=394b11827ad1a78519eed83ee268173ee680a39f60f73dd9fb5ad65a1de4dd6e&=&format=webp&quality=lossless&width=1536&height=864", badge: "" },
+      { name: "WideBody Ferrari Turismo", category: "Super", price: 25, image: "https://media.discordapp.net/attachments/1532763212716445716/1532763213026820298/image.png?ex=6a6f59fb&is=6a6e087b&hm=390955485112ef771279190b5019b1e700d4d02732226d2f71cdf2943cc019b2&=&format=webp&quality=lossless&width=1536&height=864", badge: "" },
+      { name: "Lambo Countach", category: "Super", price: 25, image: "https://media.discordapp.net/attachments/1532762967014117487/1532762967353983007/image.png?ex=6a6f59c0&is=6a6e0840&hm=ab2a680568e71b63356379d3f17f6a494a9f23a58f78886d77bf7b9d7089b010&=&format=webp&quality=lossless&width=1024&height=1024", badge: "" },
+      { name: "Hurican", category: "Super", price: 25, image: "https://media.discordapp.net/attachments/1532762227239555132/1532762227688341524/image.png?ex=6a6f5910&is=6a6e0790&hm=859b8a9bffdad5b65f4be357ba7d63511498600a95f38fb1f6ef0086d7e11117&=&format=webp&quality=lossless&width=512&height=289", badge: "" }
     ];
 
     const grid = document.getElementById('carGrid');
@@ -778,10 +810,10 @@
 
     // Quick price-range shortcuts — edit these to match your economy.
     const QUICK_RANGES = [
-      { label: '< $20k', min: 0, max: 20000 },
-      { label: '$20k–$60k', min: 20000, max: 60000 },
-      { label: '$60k–$150k', min: 60000, max: 150000 },
-      { label: '$150k+', min: 150000, max: Infinity }
+      { label: '< $20', min: 0, max: 20 },
+      { label: '$20–$30', min: 21, max: 30 },
+      { label: '$30–$40', min: 31, max: 40 },
+      { label: '$40+', min: 41, max: Infinity }
     ];
 
     function formatPrice(n) {
@@ -871,6 +903,31 @@
           </div>
         </article>
       `).join('');
+
+      attachCardTilt();
+    }
+
+    // Subtle 3D tilt that follows the cursor — purely visual, runs on top of the
+    // CSS hover zoom above. Skipped automatically on touch devices and when the
+    // user prefers reduced motion.
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isTouchDevice = window.matchMedia('(hover: none)').matches;
+
+    function attachCardTilt() {
+      if (prefersReducedMotion || isTouchDevice) return;
+
+      grid.querySelectorAll('.car-card').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width - 0.5;
+          const y = (e.clientY - rect.top) / rect.height - 0.5;
+          card.style.transform = `perspective(1000px) rotateY(${x * 9}deg) rotateX(${-y * 9}deg) translateY(-6px)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = '';
+        });
+      });
     }
 
     function renderStats() {
